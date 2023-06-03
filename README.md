@@ -1,5 +1,7 @@
 # Squirrel, a coverage-guided DBMS fuzzer.
 [![build](https://github.com/OMH4ck/Squirrel/actions/workflows/build.yml/badge.svg)](https://github.com/OMH4ck/Squirrel/actions/workflows/build.yml)
+[![Lint Code Base](https://github.com/OMH4ck/Squirrel/actions/workflows/lint.yml/badge.svg)](https://github.com/OMH4ck/Squirrel/actions/workflows/lint.yml)
+[![Build docker](https://github.com/OMH4ck/Squirrel/actions/workflows/docker-image.yml/badge.svg)](https://github.com/OMH4ck/Squirrel/actions/workflows/docker-image.yml)
 
 `Squirrel` is a fuzzer for database managment systems (DBMSs).
 
@@ -27,7 +29,7 @@ sudo apt install libmysqlclient-dev cmake ninja-build clang pkg-config clang-for
 ```
 
 #### Build Squirrel
-1. Clone this repo and run `git submodule update --init`.
+1. Clone this repository and run `git submodule update --init`.
 2. `cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev`. If you want to compile only the mutator for the specific databases, add `-DXXXXX=ON`, `XXXXX` can be `SQLITE`, `MYSQL` and `POSTGRESQL`. `Mariadb` share the same interface with `MySQL`.
 3. `cmake --build build -j`, the binaries are in `build/`.
 
@@ -57,7 +59,7 @@ Same as AFLplusplus: `afl-fuzz -i input -o output -- sqlite_harness`.
 #### Client/Server Mode (MySQL/MariaDB/PostgreSQL)
 
 1. Dry run the database to get the `__afl_map_size` and set it to `AFL_MAP_SIZE`.
-2. Run `afl-fuzz -i input -o output -- ./build/db_driver`, it will print the share memory id and wait for 30 seconds.
+2. Run `afl-fuzz -i input -o output -- ./build/db_driver`, it will print the share memory ID and wait for 30 seconds.
 3. Start the databse server with `export __AFL_SHM_ID=xxxx`.
 
 ## Publications
