@@ -63,7 +63,7 @@ Same as AFLplusplus: `afl-fuzz -i input -o output -- sqlite_harness`.
 ## Publications
 <a href="https://arxiv.org/pdf/2006.02398.pdf"><img src="https://huhong789.github.io/images/squirrel.png" align="right" width="250"></a>
 
-More details can be found in our [CCS 2020 paper](http://arxiv.org/abs/2006.02398). And the bugs found by `Squirrel` can be found in [here](https://github.com/s3team/Squirrel/wiki/Bug-List).
+More details can be found in our [CCS 2020 paper](http://arxiv.org/abs/2006.02398). And the bugs found by `Squirrel` can be found in [here](https://github.com/OMH4ck/Squirrel/wiki/Bug-List).
 
 ```
 SQUIRREL: Testing Database Management Systems with Language Validity and Coverage Feedback
