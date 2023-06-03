@@ -35,6 +35,8 @@ RUN cd bld/ && make -j && sudo make install && \
     sudo mkdir /usr/local/pgsql/data && sudo chown dobigthing /usr/local/pgsql/data &&  \
     AFL_IGNORE_PROBLEMS=1 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
 
+RUN cd /usr/local/pgsql/data && sed -i 's/#statement_timeout = 0/statement_timeout = 4000/g' postgresql.conf
+
 RUN AFL_DEBUG=1 __AFL_SHM_ID=1234 /usr/local/pgsql/bin/postgres 2>&1 | grep "__afl_map_size" | tail -n 1 | cut -d"," -f8 | cut -d" " -f 3 > /tmp/mapsize
 WORKDIR /home/Squirrel/scripts/utils
 ENTRYPOINT AFL_MAP_SIZE=$(cat /tmp/mapsize) python3 run.py postgresql ../../data/fuzz_root/pqsql_input/
