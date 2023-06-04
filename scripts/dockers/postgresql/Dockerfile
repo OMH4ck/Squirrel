@@ -20,7 +20,7 @@ RUN chmod +w /etc/sudoers && \
 USER dobigthing
 WORKDIR /home
 
-RUN git clone https://github.com/s3team/Squirrel.git && \
+RUN git clone https://github.com/OMH4ck/Squirrel.git && \
     cd Squirrel && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DPOSTGRESQL=ON && \
     cmake --build build -j && \
