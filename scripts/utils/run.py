@@ -24,6 +24,7 @@ def set_env(database):
   os.environ["AFL_CUSTOM_MUTATOR_ONLY"] = "1"
   os.environ["AFL_DISABLE_TRIM"] = "1"
   os.environ["AFL_FAST_CAL"] = "1"
+  os.environ["AFL_IGNORE_PROBLEMS"] = "1"
   os.environ["AFL_CUSTOM_MUTATOR_LIBRARY"] = get_mutator_so_path(database)
   os.environ["SQUIRREL_CONFIG"] = get_config_path(database)
 
@@ -52,7 +53,11 @@ def run(database, input_dir, output_dir=None, config_file=None, fuzzer=None):
   if database == "sqlite":
     cmd = f"{fuzzer} -i {input_dir} -o {output_dir} -M {output_id} -- /home/ossfuzz @@"
   else:
-    cmd = f"{fuzzer} -i {input_dir} -o {output_dir} -M {output_id} -t 60000 -- {ROOTPATH}/build/db_driver"
+    core = os.environ.get('CORE')
+    affinity_str = ""
+    if core:
+      affinity_str = f"-b {core}"
+    cmd = f"{fuzzer} {affinity_str} -i {input_dir} -o {output_dir} -M {output_id} -t 60000 -- {ROOTPATH}/build/db_driver"
 
   os.system(cmd)
 
