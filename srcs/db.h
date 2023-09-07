@@ -19,4 +19,5 @@ class DataBase {
 };
 
 DataBase *create_database(YAML::Node config);
+
 #endif  // __DB_H__
