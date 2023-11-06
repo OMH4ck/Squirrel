@@ -28,7 +28,7 @@ RUN apt-get update && apt-get -y build-dep mariadb
 USER dobigthing
 WORKDIR /home
 
-RUN git clone https://github.com/Dobigthing666/Squirrel.git && \
+RUN git clone https://github.com/OMH4ck/Squirrel.git && \
     cd Squirrel && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && \
     cmake --build build -j && \
